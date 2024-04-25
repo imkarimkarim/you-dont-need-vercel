@@ -10,9 +10,9 @@
 
 5. clone this repo.
 
-6. change deploy.sh to your needs and make sure it does the work it supposed to by running it manually.
+6. rename deploy.sh.example to deploy.sh and change deploy.sh to your needs and make sure it does the work it supposed to by running it manually.
 
-7. update .env file to your needs.
+7. rename .env.example to .env and update .env file to your needs.
 
 8. finally, run:
 
@@ -43,8 +43,8 @@ or
 npx pm2 logs
 ```
 
-## Get Notified when deploy is finished on Telegram 🔔
+## Get Notified on Telegram when deploy is finished  🔔
 
 - create a telegram bot
 
-- and set NOTIFY to true and your TELEGRAM_BOT_TOKEN on .env file
+- and set NOTIFY to true and your TELEGRAM_BOT_TOKEN, and DOMAIN on .env file
