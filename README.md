@@ -8,7 +8,7 @@
 
 4. install nodejs. (if it's not installed...)
 
-5. clone this repo.
+5. clone this repo somewhere outside your nextjs app.
 
 6. rename deploy.sh.example to deploy.sh and change deploy.sh to your needs and make sure it does the work it supposed to by running it manually.
 
@@ -47,4 +47,8 @@ npx pm2 logs
 
 - create a telegram bot
 
-- and set NOTIFY to true and your TELEGRAM_BOT_TOKEN, and DOMAIN on .env file
+- and set NOTIFY to true and your TELEGRAM_BOT_TOKEN on .env file
+
+## TODOS ✅
+
+- [ ] add secret check
