@@ -1,6 +1,6 @@
 # Deploy Nextjs using webhook
 
-1. create a [webhook](https://docs.github.com/en/webhooks/using-webhooks/creating-webhooks).
+1. create a [webhook](https://docs.github.com/en/webhooks/using-webhooks/creating-webhooks). ([see example](webhook_example.png))
 
 2. login to your server.
 
