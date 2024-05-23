@@ -3,7 +3,7 @@
   "scripts": {
     "start": "npm run build ; pm2 delete webhook; pm2 start dist/webhook.js",
     "build": "tsc",
-    "update": "git pull && pm2 start",
+    "update": "git pull && npm run start",
     "log": "pm2 logs webhook"
   },
   "dependencies": {
