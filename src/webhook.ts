@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.listen(PORT, () => {
-  console.log(`Webhook receiver listening on port ${PORT}`);
+  console.log(`Webhook receiver listening on port ${PORT}/webhook`);
 });
 
 // Telegram Bot Notification
@@ -44,7 +44,7 @@ JSONFilePreset<Data>("db.json", {
       const branch = payload?.ref?.split("/")?.pop(); // Extract branch name from ref
       console.log("branch", branch);
 
-      if (typeof branch !== "undefined" && branch === "dev") {
+      if (typeof branch !== "undefined" && branch === process.env.BRANCH) {
         // TODO: add secret
         // Verify webhook payload authenticity (if using a secret token)
 

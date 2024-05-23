@@ -2,6 +2,7 @@
   "type": "module",
   "scripts": {
     "start": "npm run build ; pm2 delete webhook; pm2 start dist/webhook.js",
+    "log": "pm2 logs webhook",
     "build": "tsc"
   },
   "dependencies": {
