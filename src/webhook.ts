@@ -37,6 +37,8 @@ JSONFilePreset<Data>("db.json", {
 
   // webhook listener
   app.post("/webhook", (req: any, res: any) => {
+    console.log("mmd");
+
     console.log("🚀 - app.post - req.headers:", req.headers);
     // TODO read from env
     if (
