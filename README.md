@@ -6,7 +6,7 @@ this will listens for a git webhook on specefic conditions and runs a shell scri
 
 2. login to your server.
 
-3. clone your nextjs app to the directory you want to server from.
+3. clone your nextjs app to the directory you want to serve from.
 
 4. install nodejs and git on the server. (if it's not installed...)
 
@@ -56,3 +56,5 @@ npx pm2 logs
 - [ ] add secret check
 - [ ] refactor
 - [ ] improve documentation
+- [ ] spell check
+- [ ] create a youtube tutorial
