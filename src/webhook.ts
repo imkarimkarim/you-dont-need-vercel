@@ -41,7 +41,7 @@ JSONFilePreset<Data>("db.json", {
     // TODO read from env
     if (
       req.headers["x-github-event"] === "push" ||
-      req.headers["X-Gitlab-Event"] === "Push Hook"
+      req.headers["x-gitlab-event"] === "Push Hook"
     ) {
       const payload = JSON.parse(req?.body.payload);
       console.log("payload", payload);
