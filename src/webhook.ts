@@ -35,46 +35,52 @@ JSONFilePreset<Data>("db.json", {
 
   bot.launch();
 
+  const deploy = (res: any, branch: any) => {
+    if (typeof branch !== "undefined" && branch === process.env.BRANCH) {
+      // TODO: add secret
+      // Verify webhook payload authenticity (if using a secret token)
+
+      // Execute deployment script
+      res.status(200).send("Deployment process started...");
+      db.data.users.forEach((userId) => {
+        bot.telegram.sendMessage(userId, "Deployment process started...");
+      });
+      const cmd = spawn("bash", ["deploy.sh"]);
+      cmd.on("exit", () => {
+        db.data.users.forEach((userId) => {
+          bot.telegram.sendMessage(userId, "Deployment successful.");
+        });
+        console.log("Deployment successful");
+      });
+      cmd.on("error", (err) => {
+        db.data.users.forEach((userId) => {
+          bot.telegram.sendMessage(userId, "Deployment failed: " + err);
+        });
+        console.error("Deployment failed:", err);
+      });
+    } else {
+      res.status(400).send("Payload is not valid!");
+    }
+  };
+
   // webhook listener
   app.post("/webhook", (req: any, res: any) => {
     console.log("mmd");
 
     console.log("🚀 - app.post - req.headers:", req.headers);
     // TODO read from env
-    if (
-      req.headers["x-github-event"] === "push" ||
-      req.headers["x-gitlab-event"] === "Push Hook"
-    ) {
+    if (req.headers["x-github-event"] === "push") {
       const payload = JSON.parse(req?.body.payload);
       console.log("payload", payload);
       const branch = payload?.ref?.split("/")?.pop(); // Extract branch name from ref
       console.log("branch", branch);
-
-      if (typeof branch !== "undefined" && branch === process.env.BRANCH) {
-        // TODO: add secret
-        // Verify webhook payload authenticity (if using a secret token)
-
-        // Execute deployment script
-        res.status(200).send("Deployment process started...");
-        db.data.users.forEach((userId) => {
-          bot.telegram.sendMessage(userId, "Deployment process started...");
-        });
-        const cmd = spawn("bash", ["deploy.sh"]);
-        cmd.on("exit", () => {
-          db.data.users.forEach((userId) => {
-            bot.telegram.sendMessage(userId, "Deployment successful.");
-          });
-          console.log("Deployment successful");
-        });
-        cmd.on("error", (err) => {
-          db.data.users.forEach((userId) => {
-            bot.telegram.sendMessage(userId, "Deployment failed: " + err);
-          });
-          console.error("Deployment failed:", err);
-        });
-      } else {
-        res.status(400).send("Payload is not valid!");
-      }
+      deploy(res, branch);
+    } else if (req.headers["x-gitlab-event"] === "Push Hook") {
+      const payload = JSON.parse(req?.body);
+      console.log("payload", payload);
+      const branch = payload?.ref?.split("/")?.pop(); // Extract branch name from ref
+      console.log("branch", branch);
+      deploy(res, branch);
     } else {
       res.status(400).send("Request is not supported!");
     }
