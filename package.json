@@ -3,7 +3,8 @@
   "scripts": {
     "start": "npm run build ; pm2 delete webhook; pm2 start dist/webhook.js",
     "log": "pm2 logs webhook",
-    "build": "tsc"
+    "build": "tsc",
+    "update": "git pull && pm2 restart webhook"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
