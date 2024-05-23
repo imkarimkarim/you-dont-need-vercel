@@ -38,7 +38,11 @@ JSONFilePreset<Data>("db.json", {
   // webhook listener
   app.post("/webhook", (req: any, res: any) => {
     console.log("🚀 - app.post - req.headers:", req.headers);
-    if (req.headers["x-github-event"] === "push") {
+    // TODO read from env
+    if (
+      req.headers["x-github-event"] === "push" ||
+      req.headers["X-Gitlab-Event"] === "Push Hook"
+    ) {
       const payload = JSON.parse(req?.body.payload);
       console.log("payload", payload);
       const branch = payload?.ref?.split("/")?.pop(); // Extract branch name from ref
