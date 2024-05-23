@@ -54,3 +54,5 @@ npx pm2 logs
 ## TODOS ✅
 
 - [ ] add secret check
+- [ ] refactor
+- [ ] improve documentation
