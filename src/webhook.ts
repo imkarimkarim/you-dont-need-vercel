@@ -76,7 +76,7 @@ JSONFilePreset<Data>("db.json", {
       console.log("branch", branch);
       deploy(res, branch);
     } else if (req.headers["x-gitlab-event"] === "Push Hook") {
-      const payload = JSON.parse(req?.body);
+      const payload = req?.body;
       console.log("payload", payload);
       const branch = payload?.ref?.split("/")?.pop(); // Extract branch name from ref
       console.log("branch", branch);
