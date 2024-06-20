@@ -57,4 +57,4 @@ npx pm2 logs
 - [ ] refactor
 - [ ] improve documentation
 - [ ] spell check
-- [ ] create a youtube tutorial
+- [ ] create a youtube tutorial(you-dont-need-vercel)
