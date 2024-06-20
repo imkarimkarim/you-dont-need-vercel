@@ -1,4 +1,4 @@
-# Deploy Nextjs using webhook
+# You (Might) not need Vercel. (Deploy Nextjs using webhook)
 
 this will listens for a git webhook on specefic conditions and runs a shell script.
 
